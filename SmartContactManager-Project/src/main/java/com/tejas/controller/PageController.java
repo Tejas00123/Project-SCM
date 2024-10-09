@@ -10,11 +10,12 @@ public class PageController {
 	public String showHomePage() {
 		return "home";
 	} 
-	
+	 
+	//about page
 	@GetMapping("/about")
 	public String showAboutPage() {
 		return "about";
-	}
+	}  
 	
 	@GetMapping("/services")
 	public String showServicesPage() {
