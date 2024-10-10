@@ -15,23 +15,35 @@
 			<p>Start managing contact on cloud..</p>
 		  </div>
 		  <div class="card-body">
-			<form th:action="@{/do-register}" method="post" th:object="${userForm}">
+			<form th:action="@{/do-register}" method="post" th:object="${userForm}" novalidate>
 			  <div class="mb-1">
 				 <label for="name" class="form-label">Username</label>
 				 <input th:field="*{name}" class="form-control" id="name" >
-			  </div>
+			     <p th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="text-danger">
+					Name is requried
+				 </p> 
+			 </div>
 			  <div class="mb-1">
 			    <label for="email" class="form-label">Email address</label>
 			    <input th:field="*{email}" type="email" class="form-control" id="email" aria-describedby="emailHelp">
-			  </div>
+				<p th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="text-danger">
+				  Email is requried
+				</p> 
+			</div>
 			  <div class="mb-1">
 			    <label for="password" class="form-label">New Password</label>
 			    <input th:field="*{password}" type="text" class="form-control" id="password">
+				<p th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="text-danger">
+					Password is requried
+				</p> 
 			  </div>
 			  <div class="mb-1">
 			  	 <label for="phoneNo" class="form-label">Contact Number</label>
 			  	 <input th:field="*{phoneNo}" type="text" class="form-control" id="phoneNo" >
-			  </div>
+				 <p th:if="${#fields.hasErrors('phoneNo')}" th:errors="*{phoneNo}" class="text-danger">
+				 	PhoneNo is requried
+				 </p> 
+			 </div>
 			  <div class="mb-1">
 				<label for="about">About</label>
 			    <textarea th:field="*{about}" class="form-control"  id="about"></textarea>

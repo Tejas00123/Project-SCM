@@ -2,8 +2,6 @@ package com.tejas.services;
 
 import java.util.List;
 
-import org.springframework.stereotype.Service;
-
 import com.tejas.advisors.UserNotFoundException;
 import com.tejas.entity.User;
 

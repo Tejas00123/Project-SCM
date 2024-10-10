@@ -6,6 +6,7 @@ import java.util.UUID;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -18,6 +19,7 @@ import com.tejas.helper.MessageType;
 import com.tejas.services.IUserMgmtServices;
 
 import jakarta.servlet.http.HttpSession;
+import jakarta.validation.Valid;
 
 @Controller
 public class PageController {
@@ -54,14 +56,20 @@ public class PageController {
 	@GetMapping("/register")
 	public String showRegisterPage(Model model) {
 		UserForm userForm = new UserForm();
-		userForm.setName("Nataraz");
+		//userForm.setName("Nataraz");
 		model.addAttribute("userForm", userForm);
 		return "register";
 	}
 	
 	@PostMapping("/do-register")
-	public String gettingDataFromBackend(@ModelAttribute UserForm userForm,HttpSession session) {
+	public String gettingDataFromBackend(@Valid @ModelAttribute UserForm userForm,BindingResult bResult,HttpSession session) {
 		System.out.println(userForm);
+		
+		//if any error then redirect to register
+		if(bResult.hasErrors()) {
+			return "register";
+		}
+		
 		User user = new User();
 		user.setUserId(UUID.randomUUID().toString());
 		user.setName(userForm.getName());
