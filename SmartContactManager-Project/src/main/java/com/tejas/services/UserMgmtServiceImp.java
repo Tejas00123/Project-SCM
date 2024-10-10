@@ -4,10 +4,12 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.tejas.advisors.UserNotFoundException;
 import com.tejas.entity.User;
+import com.tejas.helper.AppConstant;
 import com.tejas.repository.IUserRepo;
 
 @Service("userService")
@@ -16,8 +18,12 @@ public class UserMgmtServiceImp implements IUserMgmtServices {
 	@Autowired
 	private IUserRepo userRepo;
 	
+	@Autowired
+	private PasswordEncoder passwordEncoder;
 	@Override
 	public User saveUser(User user) {
+	    user.setPassword(passwordEncoder.encode(user.getPassword()));
+	    user.setRoleList(List.of(AppConstant.ROLE_USER));
 		User savedUser = userRepo.save(user);
 		return savedUser;
 	}

@@ -80,6 +80,7 @@ public class PageController {
 		user.setProfilePic("https://adfd.com/img/tejas.png");
 		user.setProvider(Providers.SELF);
 		
+		
 		User savedUser = userService.saveUser(user);
 		System.out.println("Used saved "+savedUser);
 		
