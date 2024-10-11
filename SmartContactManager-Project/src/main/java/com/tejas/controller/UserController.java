@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("user")
 public class UserController {
 
-	@GetMapping("/profile")
+	@RequestMapping("/profile")
 	public String showProfilePage() {
 		return "user/profile";
 	}

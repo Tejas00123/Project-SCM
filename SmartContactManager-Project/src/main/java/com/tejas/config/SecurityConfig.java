@@ -5,8 +5,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
-import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
@@ -29,14 +29,32 @@ public class SecurityConfig {
 	}
 	
 	@Bean
-	public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-		http.authorizeHttpRequests((authorize)->{
+	public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
+		httpSecurity.authorizeHttpRequests((authorize)->{
 			authorize.requestMatchers("/user/**").authenticated();
 			authorize.anyRequest().permitAll();
 		});
 		
-		http.formLogin(Customizer.withDefaults());
-		return http.build();
+ 
+		//
+		httpSecurity.formLogin((formLogin)->{
+			formLogin.loginPage("/login");
+			formLogin.loginProcessingUrl("/authenticate");
+			formLogin.successForwardUrl("/user/profile");
+			//formLogin.failureForwardUrl("/login?error=true");
+			formLogin.usernameParameter("email");
+			formLogin.passwordParameter("password");
+	
+		});
+		
+		httpSecurity.csrf(AbstractHttpConfigurer::disable);
+		
+		httpSecurity.logout((logout)->{
+			logout.logoutUrl("/logout");
+			logout.logoutSuccessUrl("/login?logout=true");
+		});
+		
+		return httpSecurity.build();
 	}
 	
 	@Bean
