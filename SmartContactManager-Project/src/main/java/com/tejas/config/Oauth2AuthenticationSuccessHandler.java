@@ -62,7 +62,7 @@ public class Oauth2AuthenticationSuccessHandler implements AuthenticationSuccess
 		
 		User user2 = userRepo.findByEmail(email).orElse(null);
 		if(user2==null) {
-			userRepo.save(user1);
+			userRepo.save(user1); 
 			logger.info("Saved user "+email);
 		}
 		new DefaultRedirectStrategy().sendRedirect(request, response, "/user/profile");
