@@ -67,8 +67,8 @@ public class UserMgmtServiceImp implements IUserMgmtServices {
 	
 	@Override
 	public boolean isUserExistsByEmail(String email) {
-		User user = userRepo.findUserByEmail(email);
-		Optional<User> opt = userRepo.findById(user.getUserId());
+		Optional<User> opt = userRepo.findByEmail(email);
+		
 		if(opt.isPresent())
 		 return true;
 		else

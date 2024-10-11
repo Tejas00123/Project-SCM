@@ -71,6 +71,19 @@ public class User implements UserDetails{
 	public String getUsername() {
 		return this.email;
 	}
+
+	
+
+	  @Override
+	    public boolean isAccountNonLocked() {
+	        return true;
+	    }
+
+	    @Override
+	    public boolean isCredentialsNonExpired() {
+	        return true;
+	    }
+
 	
 	
 }
