@@ -14,4 +14,5 @@ public interface IUserMgmtServices {
 	public boolean isUserExist(String id);
 	public boolean isUserExistsByEmail(String email);
 	public List<User> getAllUser();
+	public User getUserByEmail(String email);
 }
