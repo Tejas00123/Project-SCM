@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" th:replace="~{base::parent(~{::h2},~{::title})}">
+<html lang="en" th:replace="~{base::parent(~{::#content},~{::title})}">
 <head>
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,6 +7,44 @@
 	<title>Login</title>
 </head>
 <body>
-	<h2 style="text-align: center; color: green;">Welcome to Login page...</h2>
+	<div id="content">
+			<div class="mt-2 card w-50  container container-md">
+			  <!--<div th:replace="~{message ::message}"></div>-->
+			  <div class="card-header">
+				<h5>Signup Here</h5> 
+				<p>Start managing contact on cloud..</p>
+			  </div>
+			  <div class="card-body">
+				        <div class="text-danger" th:if="${param.error}">
+							Invalid username and password.
+						</div>
+						<div class="text-success" th:if="${param.logout}">
+							You have been logged out.
+						</div>
+				<form th:action="@{/authenticate}" method="post"  novalidate>
+				  
+				  <div class="mb-1">
+				    <label for="email" class="form-label">Email address</label>
+				    <input name="email" type="email" class="form-control" id="email" aria-describedby="emailHelp">
+					<!--<p th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="text-danger">
+					  Email is requried
+					</p> -->
+				</div>
+				  <div class="mb-1">
+				    <label for="password" class="form-label">New Password</label>
+				    <input name="password" type="text" class="form-control" id="password">
+					<!--<p th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="text-danger">
+						Password is requried 
+					</p>--> 
+				  </div>
+				 
+				  <div class="text-center">
+					<button type="submit" class="btn btn-primary text-center">Login</button>
+				    <button type="reset" class="ms-3 btn btn-danger text-center">Reset</button>
+				  </div>
+				  </form>
+			  </div>
+			</div>
+		</div>
 </body>
 </html>
