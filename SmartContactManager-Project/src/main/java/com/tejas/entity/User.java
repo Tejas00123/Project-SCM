@@ -22,7 +22,7 @@ import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-@Entity 
+@Entity  
 @Table(name="USER_Table")
 @Data
 @AllArgsConstructor
