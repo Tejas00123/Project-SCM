@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en" th:replace="~{base::parent(~{::#content},~{::title})}">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Contact</title>
+</head>
+<body>
+	<div id="content" class="d-flex">
+		<!--sidebar-->
+		<div th:if="${LoggedUser}">
+			<div th:replace="~{user/sidebar :: sidebar}"></div>
+	    </div>
+		
+		<!--contact page-->
+		<div class="container container-md w-50 mt-2">
+			<div class="card">
+				<div th:replace="~{message ::message}"></div>
+			  <div class="card-header">
+			    <h5>Add Contact</h5>
+				<p style="color: gray;">Start managing contact on cloud.....</p>
+			  </div>
+			  <div class="card-body">
+				
+				<!--contact form-->
+				<form th:object="${contactForm} " 
+				    th:action="@{'/user/contacts/add'}"
+					 method="post" novalidate> 
+					<!--name-->
+				  <div class="mb-3">
+					<label for="name" class="form-label">Contact Name</label>
+					<input type="text" id="name" th:field="*{name}" class="form-control"    aria-describedby="emailHelp">
+					<p th:if="${#fields.hasErrors('name')}" class="text-danger" th:errors="*{name}">Name is required</p>
+				 </div>
+				  <!--email-->
+				  <div class="mb-3">
+				  	<label for="exampleInputEmail1" class="form-label">Contact Email</label>
+				  	<input type="email" th:field="*{email}" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+					<p th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="text-danger">
+									  Email is requried
+					</p>
+				 </div>
+					
+				  <!--phoneNo-->			  
+				  <div class="mb-3">
+				    <label for="exampleInputEmail1" class="form-label">Contact PhoneNo</label>
+				    <input type="text" th:field="*{phoneNumber}" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+					<p th:if="${#fields.hasErrors('phoneNumber')}" th:errors="*{phoneNumber}" class="text-danger">
+							phone number is requried
+				    </p>
+				 </div>
+				  
+				  <!--Address-->
+				  <div class="mb-3">
+				  	<label for="about">Contact Address</label>
+				  	<textarea th:field="*{address}" class="form-control"  id="about"></textarea>
+					<p th:if="${#fields.hasErrors('address')}" th:errors="*{address}" class="text-danger">
+					   Address is requried
+					</p>
+				  </div>
+				  
+				  <!--description-->
+				  <div class="mb-3">
+				  	<label for="about">Contact Desription</label>
+				  	<textarea th:field="*{description}" class="form-control"  id="about"></textarea>
+				  </div>
+				  
+				  <!--social links-->
+				  <div class="mb-3 d-flex justify-content-evenly">
+					<!--websitelink-->
+					<div class="d-flex">
+						<i class="bi bi-browser-chrome"></i>
+						<input type="text" th:field="*{websiteLink}" placeholder="add url" class="ms-2 form-control">
+					</div>
+					<!--linkedIn-->
+					<div class="d-flex">
+						<i class="bi bi-linkedin"></i>
+						<input type="text" th:field="*{linkedInLink}" placeholder="add url" class="ms-2 form-control">
+					</div>
+				  </div>
+				  
+				  <!--image-->
+				  <div class=" mb-3">
+					<label for="about">Contact image</label>
+				    <input type="file" class="form-control" id="inputGroupFile01">
+				  </div>
+
+				  <!--favorite-->
+				  <div class="mb-3 form-check">
+				    <input type="checkbox" th:field="*{favorite}" class="form-check-input" id="exampleCheck1">
+				    <label class="form-check-label"  for="exampleCheck1">Add to favoruite</label>
+				  </div>
+				  
+				  <!--button-->
+				  <div class="text-center">
+				  	<button type="submit" class="btn btn-primary text-center">Add Contact</button>
+				  	<button type="reset" class="ms-3 btn btn-danger text-center">Reset</button>
+				  </div>
+				</form>
+			  </div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

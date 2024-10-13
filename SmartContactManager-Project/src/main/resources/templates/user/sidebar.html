@@ -17,20 +17,20 @@
             <ul class="nav nav-pills flex-column mb-auto">
                 <li class="nav-item">
                     <a th:href="@{/}" class="nav-link active" aria-current="page">
-                        <svg class="bi me-2" width="16" height="16"><use xlink:href="#home"></use></svg>
+                        <i class="bi bi-house fs-5"></i>
                         Home
                     </a>
                 </li>
                 <li>
                     <a th:href="@{/user/dashboard}" class="nav-link link-dark">
-                        <svg class="bi me-2" width="16" height="16"><use xlink:href="#speedometer2"></use></svg>
+                        <i class="bi bi-person-square" fs-5></i>
                         Dashboard
                     </a>
                 </li>
                 <li>
-                    <a href="#" class="nav-link link-dark">
-                        <svg class="bi me-2" width="16" height="16"><use xlink:href="#table"></use></svg>
-                        Orders
+                    <a th:href="@{/user/contacts/add}" class="nav-link link-dark">
+						<i class="bi bi-person-add fs-5"></i>
+                        Add Contact
                     </a>
                 </li>
                 <li>
@@ -47,10 +47,10 @@
                 </li>
             </ul>
             <hr>
-            <div class="dropdown">
+            <div class="dropdown" style="margin-top: 180px;">
                 <a href="#" class="d-flex align-items-center link-dark text-decoration-none dropdown-toggle" id="dropdownUser2" data-bs-toggle="dropdown" aria-expanded="false">
                     <img src="https://github.com/mdo.png" alt="" width="32" height="32" class="rounded-circle me-2">
-                    <strong>mdo</strong>
+                    <strong th:text="${LoggedUser.name}"></strong>
                 </a>
                 <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser2">
                     <li><a class="dropdown-item" href="#">New project...</a></li>
