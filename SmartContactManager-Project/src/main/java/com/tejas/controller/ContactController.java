@@ -2,6 +2,8 @@ package com.tejas.controller;
 
 import java.util.UUID;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
@@ -18,6 +20,7 @@ import com.tejas.helper.Helper;
 import com.tejas.helper.Message;
 import com.tejas.helper.MessageType;
 import com.tejas.services.IContactMgmService;
+import com.tejas.services.IImageMgmtService;
 import com.tejas.services.IUserMgmtServices;
 
 import jakarta.servlet.http.HttpSession;
@@ -31,7 +34,12 @@ public class ContactController {
     
     @Autowired
     IUserMgmtServices userService;
-	
+    
+    @Autowired
+    IImageMgmtService imageService;
+   //logger
+	 Logger logger = LoggerFactory.getLogger(ContactController.class);
+
 	@GetMapping("/add")
 	public String showAddContactPage(Model model) {
 		//binding data object to form
@@ -47,6 +55,12 @@ public class ContactController {
 		{
 			return "user/add_contact";
 		}
+		
+		String contactImageFileName = contactForm.getContactImage().getOriginalFilename();
+		String fileName = UUID.randomUUID().toString();
+		
+		String imgUrl = imageService.uploadImage(contactForm.getContactImage(), fileName);
+		
 		System.out.println(contactForm.toString());
 		Contact contact = new Contact();
 		
@@ -59,6 +73,7 @@ public class ContactController {
 		contact.setLinkedInLink(contactForm.getLinkedInLink());
 		contact.setPicture(contactForm.getPicture());
 		contact.setId(UUID.randomUUID().toString());
+		contact.setPicture(imgUrl);
 		//using helper method to find out loggeduser email
 		String usernmae = Helper.getEmailOfLoggedUesr(authentication);
 		//passing username to getUserByEmail

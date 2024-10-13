@@ -26,7 +26,8 @@
 				<!--contact form-->
 				<form th:object="${contactForm} " 
 				    th:action="@{'/user/contacts/add'}"
-					 method="post" novalidate> 
+					 method="post" novalidate
+					 enctype="multipart/form-data"> 
 					<!--name-->
 				  <div class="mb-3">
 					<label for="name" class="form-label">Contact Name</label>
@@ -83,7 +84,7 @@
 				  <!--image-->
 				  <div class=" mb-3">
 					<label for="about">Contact image</label>
-				    <input type="file" class="form-control" id="inputGroupFile01">
+				    <input type="file" th:field="*{contactImage}" class="form-control" id="inputGroupFile01">
 				  </div>
 
 				  <!--favorite-->

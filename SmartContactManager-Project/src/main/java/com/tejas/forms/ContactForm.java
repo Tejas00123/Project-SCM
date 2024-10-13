@@ -40,7 +40,7 @@ public class ContactForm {
     // size
     // resolution
 
-   
+   //A representation of an uploaded file received in a multipart request. 
     private MultipartFile contactImage;
 
     private String picture;
