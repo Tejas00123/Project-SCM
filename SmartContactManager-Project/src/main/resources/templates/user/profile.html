@@ -1,8 +1,17 @@
-<h1>profile page</h1>
-<a th:href="@{/logout}">Logout</a>
-
-
-<div th:if="${LoggedUser}">
-	<h2 th:text="${LoggedUser.name}"></h2>
-	<h2 th:text="${LoggedUser.email}"></h2>
-</div>
+<!DOCTYPE html>
+<html lang="en" th:replace="~{base::parent(~{::#content},~{::title})}">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title th:text="${LoggedUser.name}">Profile</title>
+</head>
+<body>
+	<div id="content" class="d-flex">
+		<div th:if="${LoggedUser}">
+			<div th:replace="~{user/sidebar :: sidebar}"></div>
+	    </div>
+			<h2 id="h2" class="main">Profile Page</h2>
+	</div>
+</body>
+</html>
