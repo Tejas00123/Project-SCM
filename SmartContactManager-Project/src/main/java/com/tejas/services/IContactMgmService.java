@@ -1,8 +1,13 @@
 package com.tejas.services;
 
+
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+
 import com.tejas.entity.Contact;
+import com.tejas.entity.User;
 
 public interface IContactMgmService {
   public Contact saveContact(Contact contact);
@@ -11,6 +16,6 @@ public interface IContactMgmService {
   public Contact getContactById(String id);
   public void deleteContact(String id);
   //search contact
-  List<Contact> search(String name,String email,String phonNo);
+  public Page<Contact> getAllContactByPage(User user,int page,int size,String sortBy,String direction);
   List<Contact> getByUserId(String userId);
 }

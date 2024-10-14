@@ -15,12 +15,12 @@
             </a>
             <hr>
             <ul class="nav nav-pills flex-column mb-auto">
-                <li class="nav-item">
+               <!-- <li class="nav-item">
                     <a th:href="@{/}" class="nav-link active" aria-current="page">
                         <i class="bi bi-house fs-5"></i>
                         Home
                     </a>
-                </li>
+                </li>-->
                 <li>
                     <a th:href="@{/user/dashboard}" class="nav-link link-dark">
                         <i class="bi bi-person-square" fs-5></i>
@@ -34,9 +34,9 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#" class="nav-link link-dark">
-                        <svg class="bi me-2" width="16" height="16"><use xlink:href="#grid"></use></svg>
-                        Products
+                    <a th:href="@{/user/contacts/contacts}" class="nav-link link-dark">
+                       <i class="bi bi-collection"></i>
+                        Contacts
                     </a>
                 </li>
                 <li>

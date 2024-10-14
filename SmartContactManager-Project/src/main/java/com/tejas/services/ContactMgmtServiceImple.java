@@ -3,10 +3,16 @@ package com.tejas.services;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.Sort.Direction;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import com.tejas.entity.Contact;
+import com.tejas.entity.User;
 import com.tejas.repository.IContactRepo;
 
 @Service("contactService")
@@ -48,10 +54,19 @@ public class ContactMgmtServiceImple implements IContactMgmService {
 		return null;
 	}
 	
+//	@Override
+//	public Page<Contact> getAllContactByPage(Pageable pageable) {
+//		// TODO Auto-generated method stub
+//		return repo.findAll(pageable);
+//	}
+	
 	@Override
-	public List<Contact> search(String name, String email, String phonNo) {
-		// TODO Auto-generated method stub
-		return null;
+	public Page<Contact> getAllContactByPage(User user, int page, int size, String sortBy, String direction) {
+		// preparing sort object
+		Sort sort = direction.equals("desc") ? Sort.by(sortBy).descending() : Sort.by(sortBy).ascending();
+		
+	    var pageable = PageRequest.of(page, size,sort);
+		return repo.findByUser(user,pageable);
 	}
 
 }
