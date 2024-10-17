@@ -27,7 +27,7 @@ public class ContactMgmtServiceImple implements IContactMgmService {
 
 	@Override
 	public Contact updateContact(Contact contact) {
-		return repo.findById(contact.getId()).orElseThrow(null);
+		return repo.save(contact);
 	}
 
 	@Override
@@ -67,6 +67,25 @@ public class ContactMgmtServiceImple implements IContactMgmService {
 		
 	    var pageable = PageRequest.of(page, size,sort);
 		return repo.findByUser(user,pageable);
+	}
+	
+	
+	@Override
+	public Page<Contact> getRecordsByName(String name, int page, int size) {
+		Pageable pageable = PageRequest.of(page,size);
+		return repo.findByName(name, pageable);
+	}
+	
+	@Override
+	public Page<Contact> getRecordsByEmail(String name, int page, int size) {
+		Pageable pageable = PageRequest.of(page,size);
+		return repo.findByEmail(name, pageable);
+	}
+	
+	@Override
+	public Page<Contact> getRecordsByPhoneNumber(String name, int page, int size) {
+		Pageable pageable = PageRequest.of(page,size);
+		return repo.findByPhoneNumber(name, pageable);
 	}
 
 }

@@ -6,7 +6,7 @@
 	      <span class="navbar-toggler-icon" ></span>
 	    </button>
 	    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-	      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+	      <ul id="custom-navbar"  class="navbar-nav me-auto mb-2 mb-lg-0">
 	        <li class="nav-item">
 	          <a class="nav-link active" aria-current="page" th:href=@{/}>Home</a>
 	        </li>
@@ -55,4 +55,20 @@
 	    }
 	  }
 	</style>
+	<script>
+	  document.addEventListener("DOMContentLoaded", function() {
+	    // Get all navbar links
+	    const navLinks = document.querySelectorAll('.nav-link');
+	    const navbar = document.querySelector('.custom-navbar');
+
+	    // Add click event to each link
+	    navLinks.forEach(link => {
+	      link.addEventListener('click', function() {
+	        // Set margin-left of navbar to 0px when any link is clicked
+	        navbar.style.marginLeft = "0px";
+	      });
+	    });
+	  });
+	</script>
+
 </div>

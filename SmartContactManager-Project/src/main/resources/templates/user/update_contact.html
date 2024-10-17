@@ -4,7 +4,7 @@
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Contact</title>
+	<title>Update</title>
 </head>
 <body>
 	<div id="content" class="d-flex">
@@ -18,14 +18,14 @@
 			<div class="card">
 				<div th:replace="~{message ::message}"></div>
 			  <div class="card-header">
-			    <h5>Add Contact</h5>
-				<p style="color: gray;">Start managing contact on cloud.....</p>
+			    <h5>Update Contact</h5>
+				
 			  </div>
 			  <div class="card-body">
 				
 				<!--contact form-->
 				<form th:object="${contactForm} " 
-				    th:action="@{'/user/contacts/add'}"
+				    th:action="@{'/user/contacts/update/'+${contactId}}"
 					 method="post" novalidate
 					 enctype="multipart/form-data"> 
 					<!--name-->
@@ -83,20 +83,19 @@
 				  
 				  <!--image-->
 				  <div class=" mb-3">
-					<label for="fileInput">Contact image</label>
-				    <input type="file" th:field="*{contactImage}" class="form-control" id="fileInput"  accept="image/*">
-					<img id="imagePreview" src="" alt="Image Preview" style="align-items: center; width: 100px; height: 100px;">  
-			      </div>
-
+				  	<label for="picture">Contact image</label>
+				  	<input type="file" th:field="*{contactImage}" class="form-control" id="picture"  accept="image/*">
+				  	<img id="imagePreview" th:src="*{picture}" alt="Image Preview" style="align-items: center; width: 100px; height: 100px;">  
+				  </div>
 				  <!--favorite-->
 				  <div class="mb-3 form-check">
 				    <input type="checkbox" th:field="*{favorite}" class="form-check-input" id="exampleCheck1">
 				    <label class="form-check-label"  for="exampleCheck1">Add to favoruite</label>
-				</div>
+				  </div>
 				  
 				  <!--button-->
 				  <div class="text-center">
-				  	<button type="submit" class="btn btn-primary text-center">Add Contact</button>
+				  	<button type="submit" class="btn btn-primary text-center">Update Contact</button>
 				  	<button type="reset" class="ms-3 btn btn-danger text-center">Reset</button>
 				  </div>
 				</form>
@@ -104,27 +103,28 @@
 			</div>
 		</div>
 		<!--Image preview JS-->
-    <script>
-		document.getElementById('fileInput').addEventListener('change', function(event) {
-		  const file = event.target.files[0];
-		  const preview = document.getElementById('imagePreview');
+		<script>
+			document.getElementById('picture').addEventListener('change', function(event) {
+			  const file = event.target.files[0];
+			  const preview = document.getElementById('imagePreview');
 
-		  if (file) {
-		    const reader = new FileReader();
-		    
-		    reader.onload = function(e) {
-		      preview.src = e.target.result;
-		      preview.style.display = 'block'; // Show the image preview
-		    };
+			  if (file) {
+			    const reader = new FileReader();
+			    
+			    reader.onload = function(e) {
+			      preview.src = e.target.result;
+			      preview.style.display = 'block'; // Show the image preview
+			    };
 
-		    reader.readAsDataURL(file);
-		  } else {
-		    preview.src = '';
-		    preview.style.display = 'none'; // Hide the image preview
-		  }
-		});
+			    reader.readAsDataURL(file);
+			  } else {
+			    preview.src = '';
+			    preview.style.display = 'none'; // Hide the image preview
+			  }
+			});
 
-	</script>
+		</script>
+
 	</div>
 </body>
 </html>

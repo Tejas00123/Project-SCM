@@ -11,7 +11,107 @@
 		<div th:if="${LoggedUser}">
 			<div th:replace="~{user/sidebar :: sidebar}"></div>
 	    </div>
+		
+		<div class="text-center container container-md">
 			<h2 id="h2" class="main">Search Page</h2>
+			<!--table-->
+					<div class="card card-table" style="text-align: left;">
+					                <div class="card-header">
+										<form th:action="@{'/user/contacts/search'}"
+											method="post">
+											<div class="d-flex">
+												<div class="col-md-2">
+												    <select class="form-select" name="select" id="validationDefault04" required>
+												      <option selected disabled value="">Choose...</option>
+												      <option>Name</option>
+													  <option>PhoneNo</option>
+													  <option>Email</option>
+												    </select>
+												  </div>
+												  <div class="col-md-5 d-flex">
+												     <input name="search" type="text"  placeholder="Type to search..." class="ms-2 form-control " id="validationDefault03" required>
+												  </div>
+												  <div>
+													<button type="submit" class="ms-2 form-control btn btn-primary">Search</button>
+												  </div>
+											</div>
+											
+										</form>
+					                <div class="card-body table-responsive">
+					                  <table class="table  table-hover">
+					                    <thead>
+					                      <tr>
+					                        <th style="width:37%;">Name</th>
+					                        <th style="width:36%;">Phone Number</th>
+					                        <th>Links</th>
+											<th>Actions</th>
+					                        <th class="actions"></th>
+					                      </tr>
+					                    </thead>
+					                    <tbody>
+					                      <tr th:each="c: ${pageContact}">
+					                        <td class="user-avatar flex-start"> 
+												<img  onerror="this.src='https://static-00.iconduck.com/assets.00/profile-default-icon-2048x2045-u3j7s5nj.png'"
+												 class="rounded-circle" style="width: 35px; height: 35px;" th:src="@{*{c.picture}}" alt="Avatar"/>
+												<span  th:text="*{c.name}">Penelope Thornton</span>
+												<p class="text-body-tertiary" th:text="*{c.email}"></p>
+											</td>
+					                        <td th:text="*{c.phoneNumber}">Topbar dropdown style</td>
+					                        <td>
+												<i th:if="*{c.favorite}" class="text-danger bi bi-heart-fill"></i>
+												<a th:href="*{c.websiteLink}"><i class="fs-5 ms-2 bi bi-link"></i></a>
+												<a th:href="*{c.linkedInLink}"><i class="fs-5 ms-2 bi bi-linkedin"></i></a>
+											</td>
+											<td>
+												<a><i class="bi bi-trash"></i></a>
+												<a><i class="ms-1 bi bi-pen"></i></a>
+												<a><i class="ms-1 bi bi-eye"></i></a>
+											</td>
+					                        <td class="actions"><a class="icon" href="#"><i class="mdi mdi-github-alt"></i></a></td>
+					                      </tr>
+					                     
+					                    </tbody>
+					                  </table>
+					                </div>
+					</div>
+					
+					<!--Pagination bar-->
+						
+								<div id="pagination_container"class="mt-2" aria-label="Page navigation example">
+										  <ul class="pagination">
+										    <li class="page-item" th:unless="${pageContact.first}">
+										      <a class="page-link" th:href="@{'/user/contacts/search?size='+${pageSize}+'&page='+${pageContact.number-1}}" href="" aria-label="Previous">
+										        <span aria-hidden="true">&laquo;</span>
+										      </a>
+										    </li>
+										    <li th:each="index : ${#numbers.sequence(0,pageContact.totalPages-1)}" class="page-item">
+												<a  class="page-link" th:href="@{'/user/contacts/search?size='+${pageSize}+'&page='+${index}}"
+												th:classappend="${index==pageContact.number ? 'text-primary' : 'text-black'}">
+													<span th:text="*{index+1}"></span>
+												</a>
+											</li>
+										    <li class="page-item"  th:unless="${pageContact.last}">
+										      <a class="page-link"  th:href="@{'/user/contacts/search?size='+${pageSize}+'&page='+${pageContact.number+1}}" href="#" aria-label="Next">
+										        <span aria-hidden="true">&raquo;</span>
+										      </a>
+										    </li>
+										  </ul>
+								 </div>
+								 <style>
+								 	  @media (min-width: 992px) { /* Large screens and above */
+								 	    #pagination_container {
+								 	      margin-left: 400px;
+								 		  
+								 	    }
+								 	  }
+								 	  @media (max-width: 991.98px) { /* Small screens */
+								 	    #pagination_container {
+								 	      margin-left: 100px;
+								 	    }
+								 	  }
+								 	</style>
+							  
+					</div>
 	</div>
 </body>
 </html>

@@ -3,6 +3,8 @@ package com.tejas.entity;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -14,6 +16,7 @@ import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
 
 @Entity
 @Data
@@ -43,8 +46,14 @@ public class Contact {
 	private String linkedInLink;
 	
 	@ManyToOne
+	@JsonIgnore
 	private User user;
 	
 	@OneToMany(mappedBy = "contact",fetch = FetchType.EAGER,cascade = CascadeType.ALL,orphanRemoval = true)
 	private List<SocialLink> linksList = new ArrayList<>();
+	
+	private String cloudinaryImagePublicId;
+	
+	
 }
+
