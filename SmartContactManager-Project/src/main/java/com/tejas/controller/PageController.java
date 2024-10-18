@@ -14,8 +14,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import com.tejas.entity.Providers;
 import com.tejas.entity.User;
 import com.tejas.forms.UserForm;
+import com.tejas.helper.Helper;
 import com.tejas.helper.Message;
 import com.tejas.helper.MessageType;
+import com.tejas.services.IEmailMgmtService;
+import com.tejas.services.IImageMgmtService;
 import com.tejas.services.IUserMgmtServices;
 
 import jakarta.servlet.http.HttpSession;
@@ -26,6 +29,9 @@ public class PageController {
 
 	@Autowired
 	private IUserMgmtServices userService;
+	
+	@Autowired
+	private IEmailMgmtService emailService;
 	
 	@GetMapping("/")
 	public String showHomePage() {
@@ -79,9 +85,15 @@ public class PageController {
 		user.setPhoneNumber(userForm.getPhoneNo());
 		user.setProfilePic("https://adfd.com/img/tejas.png");
 		user.setProvider(Providers.SELF);
+		//generating email token
+		String emailToken = UUID.randomUUID().toString();
+		user.setEmailToken(emailToken);
 		
-		
-		User savedUser = userService.saveUser(user);
+	    User savedUser = userService.saveUser(user);
+		//generating emailLInk
+	    String emailLink = Helper.generatingLinkForEmailVerification(emailToken);
+		//sending email
+	    emailService.sendEmail(savedUser.getEmail(), "Verify your email", emailLink);
 		System.out.println("Used saved "+savedUser);
 		
 		Message message = Message.builder().content("Registration Successful").type(MessageType.success).build();

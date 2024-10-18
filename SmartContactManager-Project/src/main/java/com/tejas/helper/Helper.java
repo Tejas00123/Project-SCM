@@ -37,4 +37,9 @@ public class Helper {
     	 return authentication.getName();
      }//end of else
   }
+  
+  public static String generatingLinkForEmailVerification(String emailToken) {
+	  String link = "http://localhost:4041/oauth/verify_email?token="+emailToken;
+	  return link;
   }
+}

@@ -42,8 +42,10 @@ public class User implements UserDetails{
 	private String profilePic;
 	@Column(length=15)
 	private String phoneNumber;
+	@Column(length=40)
+	private String emailToken;
 	
-	private boolean enabled=true;
+	private boolean enabled=false;
 	private boolean emailVerified=false;
 	private boolean phoneVerified=false;
 	
@@ -84,6 +86,10 @@ public class User implements UserDetails{
 	        return true;
 	    }
 
-	
+	@Override
+		public boolean isEnabled() {
+			// TODO Auto-generated method stub
+			return this.enabled;
+		}
 	
 }

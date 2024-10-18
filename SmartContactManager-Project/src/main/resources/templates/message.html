@@ -1,9 +1,15 @@
-<div  th:if="${session.message}"
- th:object="${session.message}"
-xmlns:th="http://www.thymeleaf.org" th:fragment="message" class="alert alert-success mt-2" role="alert">
- <!--shows message from we added in message objet--> 
- <span th:text="*{content}"></span>
- 
-  <!--callin removing session method of SessionHelper class -->
-  <th:block th:text="${@sessionHelper.removeMessage()}"></th:block>
+<div th:if="${session.message}"
+     th:object="${session.message}"
+     xmlns:th="http://www.thymeleaf.org"
+     th:fragment="message"
+     th:class="'alert alert-' + (${session.message.type.name() == 'success' ? 'success' : 
+                 (session.message.type.name() == 'danger' ? 'danger' : 
+                 (session.message.type.name() == 'info' ? 'info' : 'warning'))}) + ' mt-3 text-center'"
+     role="alert">
+
+    <!-- Display the message content -->
+    <strong th:text="*{content}"></strong>
+
+    <!-- Automatically remove the session message after displaying -->
+    <th:block th:text="${@sessionHelper.removeMessage()}"></th:block>
 </div>
