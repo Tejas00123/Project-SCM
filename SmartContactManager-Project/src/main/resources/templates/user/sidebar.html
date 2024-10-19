@@ -11,9 +11,9 @@
         <div class="d-flex flex-column flex-shrink-0 p-3 bg-body-secondary ">
             <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
                 <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"></use></svg>
-                <span class="fs-4">Sidebar</span>
+                <span class="fs-4">Welcome, To SCM</span>
             </a>
-            <hr>
+           
             <ul class="nav nav-pills flex-column mb-auto">
                <!-- <li class="nav-item">
                     <a th:href="@{/}" class="nav-link active" aria-current="page">
@@ -23,10 +23,16 @@
                 </li>-->
                 <li>
                     <a th:href="@{/user/dashboard}" class="nav-link link-dark">
-                        <i class="bi bi-person-square" fs-5></i>
+                        <i class="bi bi-person-square fs-5"></i>
                         Dashboard
                     </a>
                 </li>
+				<li>
+				     <a th:href="@{/user/profile}" class="nav-link link-dark">
+					     <i class="bi bi-person-bounding-box fs-5"></i>
+				          Profile
+				      </a>
+				</li>
                 <li>
                     <a th:href="@{/user/contacts/add}" class="nav-link link-dark">
 						<i class="bi bi-person-add fs-5"></i>
@@ -35,21 +41,23 @@
                 </li>
                 <li>
                     <a th:href="@{/user/contacts/contacts}" class="nav-link link-dark">
-                       <i class="bi bi-collection"></i>
+                       <i class="bi bi-collection fs-5"></i>
                         Contacts
                     </a>
                 </li>
                 <li>
-                    <a href="#" class="nav-link link-dark">
-                        <svg class="bi me-2" width="16" height="16"><use xlink:href="#people-circle"></use></svg>
-                        Customers
+                    <a th:href="@{/user/direct-message}" class="nav-link link-dark">
+                        <i class="bi bi-envelope-at fs-5"></i>
+                        Direct Message
                     </a>
                 </li>
             </ul>
             <hr>
             <div class="dropdown" style="margin-top: 180px;">
                 <a href="#" class="d-flex align-items-center link-dark text-decoration-none dropdown-toggle" id="dropdownUser2" data-bs-toggle="dropdown" aria-expanded="false">
-                    <img src="https://github.com/mdo.png" alt="" width="32" height="32" class="rounded-circle me-2">
+                    <img th:src="@{${LoggedUser.profilePic}}"
+					  onerror="this.src='https://static-00.iconduck.com/assets.00/profile-default-icon-2048x2045-u3j7s5nj.png'"
+					 alt="" width="32" height="32" class="rounded-circle me-2">
                     <strong th:text="${LoggedUser.name}"></strong>
                 </a>
                 <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser2">
@@ -57,7 +65,7 @@
                     <li><a class="dropdown-item" href="#">Settings</a></li>
                     <li><a class="dropdown-item" href="#">Profile</a></li>
                     <li><hr class="dropdown-divider"></li>
-                    <li><a class="dropdown-item" href="#">Sign out</a></li>
+                    <li><a class="dropdown-item" th:href="@{/logout}">Sign out</a></li>
                 </ul>
             </div>
         </div>
@@ -67,7 +75,7 @@
 	<style>
 	  @media (min-width: 992px) { /* Large screens and above */
 	    #sidebar {
-	      margin-top: -55px;
+	      margin-top: -57px;
 		  
 	    }
 	  }

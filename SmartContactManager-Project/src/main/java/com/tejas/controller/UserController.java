@@ -29,4 +29,9 @@ public class UserController {
 		return "user/dashboard";
 	}
 	
+	
+	@GetMapping("/direct-message")
+	public String showDirectMessagePage() {
+		return "user/direct_message";
+	}
 }

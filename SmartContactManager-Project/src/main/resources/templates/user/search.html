@@ -15,8 +15,8 @@
 		<div class="text-center container container-md">
 			<h2 id="h2" class="main">Search Page</h2>
 			<!--table-->
-					<div class="card card-table" style="text-align: left;">
-					                <div class="card-header">
+					<div class="card card-table " style="text-align: left;">
+					                <div class="card-header d-flex justify-content-between">
 										<form th:action="@{'/user/contacts/search'}"
 											method="post">
 											<div class="d-flex">
@@ -37,8 +37,13 @@
 											</div>
 											
 										</form>
+										
+										<div>
+										  <button type="submit" onclick="exportData()" class="ms-2 form-control btn btn-success">Export</button>
+										</div>
+										</div>
 					                <div class="card-body table-responsive">
-					                  <table class="table  table-hover">
+					                  <table class="table  table-hover" id="contact-table">
 					                    <thead>
 					                      <tr>
 					                        <th style="width:37%;">Name</th>
@@ -112,6 +117,18 @@
 								 	</style>
 							  
 					</div>
+					<script src="https://cdn.jsdelivr.net/npm/@linways/table-to-excel@1.0.4/dist/tableToExcel.min.js"></script>
+
+					<script>
+					   function exportData(){
+						   TableToExcel.convert(document.getElementById("contact-table"), {
+						     name: "contact.xlsx",
+							    sheet: {
+									    name: "Sheet 1"
+							    }
+						   });	
+					   }
+				   </script>   
 	</div>
 </body>
 </html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" th:replace="~{base::parent(~{::#content},~{::title})}">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Direct Message</title>
+</head>
+<body>
+	<div id="content" class="d-flex">
+		<div th:if="${LoggedUser}">
+			<div th:replace="~{user/sidebar :: sidebar}"></div>
+	    </div>
+		<div class="container container-md w-50">
+			<h4>Direct Message to any contact</h4>
+			<form th:action="@{/oauth/direct-message}" method="get">
+						                    <div class="mb-3">
+						                        <label for="name" class="form-label">Your Name</label>
+						                        <input type="text" class="form-control" id="name" name="name" placeholder="John Doe" required>
+						                    </div>
+						                    <div class="mb-3">
+						                        <label for="email" class="form-label">Contact Email</label>
+						                        <input type="email" class="form-control" id="email" name="email" placeholder="you@example.com" required>
+						                    </div>
+						                    <div class="mb-3">
+						                        <label for="message" class="form-label">Message</label>
+						                        <textarea class="form-control" id="message" name="message" rows="5" placeholder="Your message" required></textarea>
+						                    </div>
+						                    <button type="submit" class="btn btn-primary">Send Message</button>
+						                </form>
+		</div>
+	</div>
+</body>
+</html>

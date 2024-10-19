@@ -9,6 +9,7 @@ import com.tejas.entity.User;
 import com.tejas.helper.Message;
 import com.tejas.helper.MessageType;
 import com.tejas.repository.IUserRepo;
+import com.tejas.services.IEmailMgmtService;
 
 import jakarta.servlet.http.HttpSession;
 
@@ -18,6 +19,9 @@ public class UserVerificationController {
     @Autowired
 	private IUserRepo  userRepo;
 	
+    @Autowired
+    private IEmailMgmtService emailService;
+    
 	@RequestMapping("/verify_email")
 	public String emailVerificationProcessing(@RequestParam("token") String email_token,HttpSession session) {
 		System.out.println("Verification done...");
@@ -46,4 +50,20 @@ public class UserVerificationController {
 
 		return "error_page";
 	}
+
+   
+	@RequestMapping("/send-message")
+	public String sendContactMessage(@RequestParam String name,
+			@RequestParam String email, @RequestParam String message) {
+		emailService.feedBackEmail(name, email, message);
+		return "send_message";
+	}
+	
+	@RequestMapping("/direct-message")
+	public String directMessageToContact(@RequestParam String name,
+			@RequestParam String email, @RequestParam String message) {
+		emailService.directMailToContact(name, email, message);
+		return "send_message";
+	}
+	
 }

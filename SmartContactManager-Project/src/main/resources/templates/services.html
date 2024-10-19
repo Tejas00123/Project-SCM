@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" th:replace="~{base :: parent(~{:: h1},~{::title})}">
+<html lang="en" th:replace="~{base :: parent(~{:: #content},~{::title})}">
 <head>
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,6 +7,66 @@
 	<title>services</title>
 </head>
 <body>
-	<h1>This is services page</h1>
+	<div id="content" class="d-flex">
+		<div th:if="${LoggedUser}">
+		 <div th:replace="~{user/sidebar :: sidebar}"></div>
+		</div>
+		
+		<div class="container mt-5">
+		       <!-- Header Section -->
+		       <section class="text-center mb-5">
+		           <h1 class="display-4">Our Services</h1>
+		           <p class="lead">We offer a wide range of services to help you manage your contacts efficiently.</p>
+		       </section>
+
+		       <!-- Services Section -->
+		       <section>
+		           <div class="row text-center">
+		               <!-- Service 1 -->
+		               <div class="col-md-4 mb-4">
+		                   <div class="card h-100 shadow-sm">
+		                       <img src="/images/contact-management.jpg" class="card-img-top" alt="Contact Management">
+		                       <div class="card-body">
+		                           <h5 class="card-title">Contact Management</h5>
+		                           <p class="card-text">Efficiently manage all your contacts in one place, with real-time updates and easy access.</p>
+		                       </div>
+		                   </div>
+		               </div>
+
+		               <!-- Service 2 -->
+		               <div class="col-md-4 mb-4">
+		                   <div class="card h-100 shadow-sm">
+		                       <img src="/images/sync-contacts.jpg" class="card-img-top" alt="Sync Contacts">
+		                       <div class="card-body">
+		                           <h5 class="card-title">Sync Contacts</h5>
+		                           <p class="card-text">Sync your contacts across multiple devices to stay connected wherever you are.</p>
+		                       </div>
+		                   </div>
+		               </div>
+
+		               <!-- Service 3 -->
+		               <div class="col-md-4 mb-4">
+		                   <div class="card h-100 shadow-sm">
+		                       <img src="/images/security.jpg" class="card-img-top" alt="Security">
+		                       <div class="card-body">
+		                           <h5 class="card-title">Data Security</h5>
+		                           <p class="card-text">We offer top-notch security for your data with our secure contact storage solutions.</p>
+		                       </div>
+		                   </div>
+		               </div>
+		           </div>
+		       </section>
+
+		       <!-- Call-to-Action Section -->
+		       <section class="text-center mt-5">
+		           <h3>Ready to get started?</h3>
+		           <p>Contact us today to learn more about our services and how we can help you.</p>
+		           <a href="/contact" class="btn btn-primary btn-lg">Contact Us</a>
+		       </section>
+		   </div>
+
+		   <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+
+    </div>
 </body>
 </html>

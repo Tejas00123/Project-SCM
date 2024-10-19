@@ -46,7 +46,7 @@
 	<style>
 	  @media (min-width: 992px) { /* Large screens and above */
 	    .custom-navbar {
-	      margin-left: 282px;
+	      margin-left: 280px;
 	    }
 	  }
 	  @media (max-width: 991.98px) { /* Small screens and below */
@@ -55,20 +55,6 @@
 	    }
 	  }
 	</style>
-	<script>
-	  document.addEventListener("DOMContentLoaded", function() {
-	    // Get all navbar links
-	    const navLinks = document.querySelectorAll('.nav-link');
-	    const navbar = document.querySelector('.custom-navbar');
 
-	    // Add click event to each link
-	    navLinks.forEach(link => {
-	      link.addEventListener('click', function() {
-	        // Set margin-left of navbar to 0px when any link is clicked
-	        navbar.style.marginLeft = "0px";
-	      });
-	    });
-	  });
-	</script>
 
 </div>

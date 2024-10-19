@@ -1,12 +1,116 @@
 <!DOCTYPE html>
-<html lang="en" th:replace="~{base::parent(~{::h2},~{::title})}">
+<html lang="en" th:replace="~{base::parent(~{::#content},~{::title})}">
 <head>
-	<meta charset="UTF-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>home</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Contact Manager - Home</title>
+    
+    <!-- Bootstrap CSS (for responsive design and layout) -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/css/bootstrap.min.css">
+    
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+        }
+
+        #content {
+            padding: 20px;
+            margin: 20px auto;
+        }
+
+        .welcome-text {
+            text-align: center;
+            margin-top: 40px;
+            color: #28a745;
+        }
+
+        .custom-sidebar {
+            background-color: #343a40;
+            min-height: 100vh;
+            padding: 15px;
+            color: white;
+        }
+
+        .custom-sidebar a {
+            color: white;
+            text-decoration: none;
+            display: block;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+
+        .custom-sidebar a:hover {
+            background-color: #495057;
+            border-radius: 5px;
+        }
+
+        .content-area {
+            margin-left: 280px; /* Adjusted for the sidebar */
+            padding: 20px;
+        }
+
+        @media (max-width: 991.98px) {
+            .content-area {
+                margin-left: 0;
+                padding: 10px;
+            }
+        }
+    </style>
 </head>
+
 <body>
-	<h2 style="text-align: center; color: green;">Welcome to Home page...</h2>
+
+    <div id="content" class="d-flex">
+        
+        <!-- Sidebar (Visible only for logged-in users) -->
+        <div th:if="${LoggedUser}">
+            <div th:replace="~{user/sidebar :: sidebar}"></div>
+        </div>
+
+        <!-- Main Content Area -->
+        <div class="content-area container-fluid">
+            <h2 class="welcome-text">Welcome to Smart Contact Manager Home Page</h2>
+            
+            <!-- Additional content here -->
+            <div class="row mt-5">
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Manage Contacts</h5>
+                            <p class="card-text">Easily manage all your contacts in one place.</p>
+                            <a href="/user/contacts" class="btn btn-primary">Go to Contacts</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">View Profile</h5>
+                            <p class="card-text">Update and manage your personal profile information.</p>
+                            <a href="/user/profile" class="btn btn-secondary">View Profile</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Settings</h5>
+                            <p class="card-text">Adjust your account settings and preferences.</p>
+                            <a href="/user/settings" class="btn btn-warning">Go to Settings</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+
+    <!-- Bootstrap JS (for responsive behavior) -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+
 </body>
 </html>

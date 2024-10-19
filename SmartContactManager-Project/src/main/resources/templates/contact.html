@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" th:replace="~{base::parent(~{::h2},~{::title})}">
+<html lang="en" th:replace="~{base::parent(~{::#content},~{::title})}">
 <head>
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,6 +7,108 @@
 	<title>contact</title>
 </head>
 <body>
-	<h2 style="text-align: center; color: green;">Welcome to Contact page...</h2>
+	<div id="content" class="d-flex">
+	<div th:if="${LoggedUser}">
+	  <div th:replace="~{user/sidebar :: sidebar}"></div>
+	</div>
+	<!--Contact page -->
+	<div class="container mt-1">
+	        <!-- Header Section -->
+	        <section class="text-center mb-5">
+	            <h1 class="display-4">Contact Us</h1>
+	            <p class="lead">We'd love to hear from you! Feel free to reach out using the form below or find us at our location.</p>
+	        </section>
+
+	        <div class="row">
+	            <!-- Contact Form Section -->
+	            <div class="col-md-6 mb-4">
+	                <h3>Send us a Message</h3>
+	                <form th:action="@{/oauth/send-message}" method="get">
+	                    <div class="mb-3">
+	                        <label for="name" class="form-label">Your Name</label>
+	                        <input type="text" class="form-control" id="name" name="name" placeholder="John Doe" required>
+	                    </div>
+	                    <div class="mb-3">
+	                        <label for="email" class="form-label">Your Email</label>
+	                        <input type="email" class="form-control" id="email" name="email" placeholder="you@example.com" required>
+	                    </div>
+	                    <div class="mb-3">
+	                        <label for="message" class="form-label">Message</label>
+	                        <textarea class="form-control" id="message" name="message" rows="5" placeholder="Your message" required></textarea>
+	                    </div>
+	                    <button type="submit" class="btn btn-primary">Send Message</button>
+	                </form>
+	            </div>
+
+	            <!-- Contact Information Section -->
+	            <div class="col-md-6">
+	                <h3>Our Contact Details</h3>
+	                <ul class="list-unstyled">
+	                    <li><strong>Email:</strong> abc@gmail.com</li>
+	                    <li><strong>Phone:</strong> +123 456 7890</li>
+	                    <li><strong>Address:</strong>  India</li>
+	                </ul>
+	                
+	                <!-- Social Media Links -->
+	                <h5>Connect with us:</h5>
+	                <div>
+	                    <a href="#" class="btn btn-outline-primary me-2">Facebook</a>
+	                    <a href="#" class="btn btn-outline-info me-2">Twitter</a>
+	                    <a href="#" class="btn btn-outline-danger">LinkedIn</a>
+	                </div>
+	                
+	                <!-- Optional: Embedded Google Map -->
+	                <div class="mt-4">
+	                    <iframe 
+	                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3153.2201331936646!2d144.9559323152977!3d-37.81720997975192!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad642af0f11fd81%3A0xf5772d402540b50!2sFederation%20Square!5e0!3m2!1sen!2sau!4v1609295894875!5m2!1sen!2sau" 
+	                        width="100%" 
+	                        height="250" 
+	                        frameborder="0" 
+	                        style="border:0;" 
+	                        allowfullscreen="" 
+	                        aria-hidden="false" 
+	                        tabindex="0"></iframe>
+	                </div>
+	            </div>
+	        </div>
+	    </div>
+
+	    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+       <style>
+		/* Custom styles for the contact page */
+		.container {
+		    max-width: 1100px;
+		}
+
+		h1, h3, p.lead {
+		    color: #333;
+		}
+
+		.form-control {
+		    border-radius: 0.25rem;
+		}
+
+		.btn-primary {
+		    padding: 10px 20px;
+		    font-size: 1.2rem;
+		}
+
+		.list-unstyled li {
+		    font-size: 1.1rem;
+		    margin-bottom: 10px;
+		}
+
+		a.btn-outline-primary, a.btn-outline-info, a.btn-outline-danger {
+		    margin-right: 10px;
+		    padding: 10px 15px;
+		    font-size: 1rem;
+		}
+
+		iframe {
+		    border-radius: 8px;
+		}
+
+	   </style>
+  </div>
 </body>
 </html>

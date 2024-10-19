@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" th:replace="~{base:: parent(~{::h1},~{::title})}">
+<html lang="en" th:replace="~{base:: parent(~{::#content},~{::title})}">
 <head>
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,6 +7,59 @@
 	<title>about </title>
 </head>
 <body>
-	<h1>This is about page</h1>
+	<div id="content" class="d-flex">
+	<div th:if="${LoggedUser}">
+				<div th:replace="~{user/sidebar :: sidebar}"></div>
+		    </div>
+	
+	<!--About page-->
+	<div class="container mt-1">
+	       <!-- Header Section -->
+	       <section class="text-center mb-2">
+	           <h1 class="display-4">About Us</h1>
+	           <p class="lead">We are committed to delivering the best services and creating value for our clients.</p>
+	       </section>
+
+	       <!-- About Content Section -->
+	       <section>
+	           
+	               <!-- Image Section -->
+	              
+	               <!-- About Text Section -->
+	               <div class="col-md-6">
+	                   <h2>Who We Are</h2>
+	                   <p>Founded in [Year], our company has been at the forefront of innovation and customer service. Our mission is to provide top-notch solutions tailored to our clients' needs. With a team of experienced professionals, we strive for excellence in everything we do.</p>
+
+	                   <h3>Our Mission</h3>
+	                   <p>Our mission is to empower businesses and individuals with cutting-edge technology and personalized solutions. We are passionate about making a positive impact through our work and building long-lasting relationships with our clients.</p>
+
+	                   
+	               </div>
+	           
+	       </section>
+
+	   </div>
+
+	   <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+     
+	    <style>
+			/* Custom styles for the about page */
+			
+
+			h1, h2, h3 {
+			    color: #333;
+			}
+
+			
+
+			p {
+			    font-size: 1.1rem;
+			    line-height: 1.6;
+			}
+
+			
+
+		</style>
+	</div>
 </body>
 </html>
