@@ -1,65 +1,57 @@
 <!DOCTYPE html>
 <html lang="en" th:replace="~{base::parent(~{::#content},~{::title})}">
 <head>
-	<meta charset="UTF-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Register</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
 </head>
 <body>
-	<div id="content">
-		<div class="mt-2 card w-50  container container-md">
-		  <div th:replace="~{message ::message}"></div>
-		  <div class="card-header">
-			<h5 th:text="#{register.title}">Signup Here</h5> 
-			<p th:text="#{register.description}">Start managing contact on cloud..</p>
-		  </div>
-		  <div class="card-body">
-			<form th:action="@{/do-register}" method="post" th:object="${userForm}" novalidate>
-			  <div class="mb-1">
-				 <label for="name" class="form-label" th:text="#{register.username}">Enter Username</label>
-				 <input th:field="*{name}" class="form-control" id="name" >
-			     <p th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="text-danger">
-					Name is requried  
-				 </p>  
-			 </div>
-			  <div class="mb-1">
-			    <label for="email" class="form-label" th:text="#{register.email}">Enter Email address</label>
-			    <input th:field="*{email}" type="email" class="form-control" id="email" aria-describedby="emailHelp">
-				<p th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="text-danger">
-				  Email is requried
-				</p> 
-			</div>
-			  <div class="mb-1">
-			    <label for="password" class="form-label" th:text="#{register.password}">Enter New Password</label>
-			    <input th:field="*{password}" type="text" class="form-control" id="password">
-				<p th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="text-danger">
-					Password is requried 
-				</p> 
-			  </div>
-			  <div class="mb-1">
-			  	 <label for="phoneNo" class="form-label" th:text="#{register.phoneno}">Enter Contact Number</label>
-			  	 <input th:field="*{phoneNo}" type="text" class="form-control" id="phoneNo" >
-				 <p th:if="${#fields.hasErrors('phoneNo')}" th:errors="*{phoneNo}" class="text-danger">
-				 	PhoneNo is requried
-				 </p> 
-			 </div>
-			  <div class="mb-1">
-				<label for="about" th:text="#{register.about}">Enter About</label>
-			    <textarea th:field="*{about}" class="form-control"  id="about"></textarea>
-			    
-			  </div>
-			 <!-- <div class="mb-1 form-check">
-			    <input type="checkbox" class="form-check-input" id="exampleCheck1">
-			    <label class="form-check-label" for="exampleCheck1">Check me out</label>
-			  </div>-->
-			  <div class="text-center">
-				<button type="submit" class="btn btn-primary text-center" th:text="#{register.registerbtn}">Register</button>
-			    <button type="reset" class="ms-3 btn btn-danger text-center" th:text="#{register.resetbtn}">Reset</button>
-			  </div>
-			  </form>
-		  </div>
-		</div>
-	</div>
+    <div id="content" class="container mt-4">
+        <div class="row justify-content-center">
+            <div class="col-12 col-md-8 col-lg-6">
+                <div class="card">
+                    <div th:replace="~{message ::message}"></div>
+                    <div class="card-header text-center">
+                        <h5 th:text="#{register.title}">Signup Here</h5> 
+                        <p th:text="#{register.description}">Start managing contact on cloud..</p>
+                    </div>
+                    <div class="card-body">
+                        <form th:action="@{/do-register}" method="post" th:object="${userForm}" novalidate>
+                            <div class="mb-3">
+                                <label for="name" class="form-label" th:text="#{register.username}">Enter Username</label>
+                                <input th:field="*{name}" class="form-control" id="name">
+                                <p th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="text-danger">Name is required</p>
+                            </div>
+                            <div class="mb-3">
+                                <label for="email" class="form-label" th:text="#{register.email}">Enter Email address</label>
+                                <input th:field="*{email}" type="email" class="form-control" id="email" aria-describedby="emailHelp">
+                                <p th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="text-danger">Email is required</p>
+                            </div>
+                            <div class="mb-3">
+                                <label for="password" class="form-label" th:text="#{register.password}">Enter New Password</label>
+                                <input th:field="*{password}" type="text" class="form-control" id="password">
+                                <p th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="text-danger">Password is required</p>
+                            </div>
+                            <div class="mb-3">
+                                <label for="phoneNo" class="form-label" th:text="#{register.phoneno}">Enter Contact Number</label>
+                                <input th:field="*{phoneNo}" type="text" class="form-control" id="phoneNo">
+                                <p th:if="${#fields.hasErrors('phoneNo')}" th:errors="*{phoneNo}" class="text-danger">Phone Number is required</p>
+                            </div>
+                            <div class="mb-3">
+                                <label for="about" class="form-label" th:text="#{register.about}">Enter About</label>
+                                <textarea th:field="*{about}" class="form-control" id="about"></textarea>
+                            </div>
+                            <div class="text-center d-flex">
+                                <button type="submit" class="btn btn-primary w-100 " th:text="#{register.registerbtn}">Register</button>
+                                <button type="reset" class="ms-3 btn btn-danger w-100" th:text="#{register.resetbtn}">Reset</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </body>
 </html>

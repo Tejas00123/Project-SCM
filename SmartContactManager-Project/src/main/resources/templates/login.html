@@ -4,51 +4,57 @@
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Login</title>
+	<title>Login</title>S
 </head>
 <body>
 	<div id="content">
-			<div class="mt-2 card w-50  container container-md">
-			  <div th:replace="~{message ::message}"></div>
-			  <div class="card-header">
-				<h5 th:text="#{login.title}">Login Here</h5> 
-				<p th:text="#{login.description}">Start managing contact on cloud..</p>
-			  </div>
-			  <div class="card-body">
-				        <div class="text-danger" th:if="${param.error}" th:text="#{login.text-danger}">
-							Invalid username and password.
+		<div class="container mt-4">
+			<div class="row justify-content-center">
+				<div class="col-12 col-sm-8 col-md-6 col-lg-4">
+					<div class="card">
+						<div th:replace="~{message ::message}"></div>
+						<div class="card-header text-center">
+							<h5 th:text="#{login.title}">Login Here</h5> 
+							<p th:text="#{login.description}">Start managing contacts on the cloud...</p>
 						</div>
-						<div class="text-success" th:if="${param.logout}" th:text="#{login.text-success}">
-							You have been logged out.
+						<div class="card-body">
+							<div class="text-danger" th:if="${param.error}" th:text="#{login.text-danger}">
+								Invalid username and password.
+							</div>
+							<div class="text-success" th:if="${param.logout}" th:text="#{login.text-success}">
+								You have been logged out.
+							</div>
+							<form th:action="@{/authenticate}" method="post" novalidate>
+								<div class="mb-3">
+									<label for="email" class="form-label" th:text="#{login.email}">Enter Email address</label>
+									<input name="email" type="email" class="form-control" id="email" aria-describedby="emailHelp" required>
+								</div>
+								<div class="mb-3">
+									<label for="password" class="form-label" th:text="#{login.password}">Enter Password</label>
+									<input name="password" type="password" class="form-control" id="password" required>
+								</div>
+								<div class="text-center mb-3 d-flex justify-content-between">
+									<button type="submit" class="btn btn-primary w-100" th:text="#{login.loginbtn}">Login</button>
+									<button type="reset" class="ms-2 btn btn-danger w-100" th:text="#{login.resetbtn}">Reset</button>
+								</div>
+								<div class="text-center mb-3 ">
+									<a th:href="@{/oauth2/authorization/google}" class="btn btn-outline-primary w-100 me-2">
+										<i class="bi bi-google text-danger me-2"></i><span th:text="#{login.googlebtn}">Login with Google</span>
+									</a>
+									
+								 </div>
+								 <div class="text-center mb-3 ">
+									<a th:href="@{/oauth2/authorization/github}" class="btn btn-outline-primary w-100">
+										<i class="bi bi-github text-danger me-2"></i><span th:text="#{login.githubbtn}">Login with Github</span>
+									</a>
+								</div>
+							</form>
 						</div>
-				<form th:action="@{/authenticate}" method="post"  novalidate>
-				  
-				  <div class="mb-1">
-				    <label for="email" class="form-label" th:text="#{login.email}">Enter Email address</label>
-				    <input name="email" type="email" class="form-control" id="email" aria-describedby="emailHelp">
-					<!--<p th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="text-danger">
-					  Email is requried
-					</p> -->
+					</div>
 				</div>
-				  <div class="mb-1">
-				    <label for="password" class="form-label" th:text="#{login.password}">Enter Password</label>
-				    <input name="password" type="text" class="form-control" id="password">
-					<!--<p th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="text-danger">
-						Password is requried 
-					</p>--> 
-				  </div>
-				 
-				  <div class="text-center">
-					<button type="submit" class="btn btn-primary text-center" th:text="#{login.loginbtn}">Login</button>
-				    <button type="reset" class="ms-3 btn btn-danger text-center" th:text="#{login.resetbtn}">Reset</button>
-				  </div>
-				  <div class="text-center mt-3 d-flex">
-					<button class="btn w-50 border-primary"><i class="bi bi-google text-danger me-2"></i><a th:href="@{/oauth2/authorization/google}" style="text-decoration: none; color: black;" th:text="#{login.googlebtn}">Login with Google</a></button>
-					<button class="btn w-50 border-primary ms-2"><i class="bi bi-github text-danger me-2"></i><a th:href="@{/oauth2/authorization/github}" style="text-decoration: none; color: black;"th:text="#{login.githubbtn}" >Login with Github</a></button>
-				  </div>
-				  </form>
-			  </div>
 			</div>
 		</div>
+	</div>
+
 </body>
 </html>

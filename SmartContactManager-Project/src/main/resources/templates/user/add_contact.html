@@ -14,7 +14,7 @@
 	    </div>
 		
 		<!--contact page-->
-		<div class="container container-md w-50 mt-2">
+		<div id="contact" class="container container-md  mt-2">
 			<div class="card">
 				<div th:replace="~{message ::message}"></div>
 			  <div class="card-header">
@@ -125,6 +125,18 @@
 		});
 
 	</script>
+      <style>
+		#contact {
+		    width: 50%;
+		}
+
+		/* Media query for small devices (e.g., phones) */
+		@media (max-width: 576px) {
+		    #contact {
+		        width: 100%;
+		    }
+		}
+	  </style>
 	</div>
 </body>
 </html>

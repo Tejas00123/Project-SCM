@@ -11,7 +11,7 @@
 		<div th:if="${LoggedUser}">
 			<div th:replace="~{user/sidebar :: sidebar}"></div>
 	    </div>
-		<div class="container container-md w-50">
+		<div id="direct_message_container" class="container container-md ">
 			<h4>Direct Message to any contact</h4>
 			<form th:action="@{/oauth/direct-message}" method="get">
 						                    <div class="mb-3">
@@ -29,6 +29,18 @@
 						                    <button type="submit" class="btn btn-primary">Send Message</button>
 						                </form>
 		</div>
+		<style>
+				#direct_message_container {
+				    width: 50%;
+				}
+
+				/* Media query for small devices (e.g., phones) */
+				@media (max-width: 576px) {
+				    #direct_message_container {
+				        width: 100%;
+				    }
+				}
+			  </style>
 	</div>
 </body>
 </html>
