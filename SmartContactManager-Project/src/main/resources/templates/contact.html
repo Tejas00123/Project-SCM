@@ -15,28 +15,28 @@
 	<div class="container mt-1">
 	        <!-- Header Section -->
 	        <section class="text-center mb-5">
-	            <h1 class="display-4">Contact Us</h1>
-	            <p class="lead">We'd love to hear from you! Feel free to reach out using the form below or find us at our location.</p>
+	            <h1 class="display-4" th:text="#{contact.title}">Contact Us</h1>
+	            <p class="lead" th:text="#{contact.description}">We'd love to hear from you! Feel free to reach out using the form below or find us at our location.</p>
 	        </section>
 
 	        <div class="row">
 	            <!-- Contact Form Section -->
 	            <div class="col-md-6 mb-4">
-	                <h3>Send us a Message</h3>
+	                <h3 th:text="#{contact.formTitle}">Send us a Message</h3>
 	                <form th:action="@{/oauth/send-message}" method="get">
 	                    <div class="mb-3">
-	                        <label for="name" class="form-label">Your Name</label>
+	                        <label for="name" class="form-label" th:text="#{contact.name}">Your Name</label>
 	                        <input type="text" class="form-control" id="name" name="name" placeholder="John Doe" required>
 	                    </div>
 	                    <div class="mb-3">
-	                        <label for="email" class="form-label">Your Email</label>
+	                        <label for="email" class="form-label" th:text="#{contact.email}">Your Email</label>
 	                        <input type="email" class="form-control" id="email" name="email" placeholder="you@example.com" required>
 	                    </div>
 	                    <div class="mb-3">
-	                        <label for="message" class="form-label">Message</label>
+	                        <label for="message" class="form-label" th:text="#{contact.message}">Message</label>
 	                        <textarea class="form-control" id="message" name="message" rows="5" placeholder="Your message" required></textarea>
 	                    </div>
-	                    <button type="submit" class="btn btn-primary">Send Message</button>
+	                    <button type="submit" class="btn btn-primary" th:text="#{contact.button}">Send Message</button>
 	                </form>
 	            </div>
 

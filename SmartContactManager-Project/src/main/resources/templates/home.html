@@ -71,16 +71,16 @@
 
         <!-- Main Content Area -->
         <div class="content-area container-fluid">
-            <h2 class="welcome-text">Welcome to Smart Contact Manager Home Page</h2>
+            <h2 class="welcome-text" th:text="#{home.welcome-text}">Welcome to Smart Contact Manager Home Page</h2>
             
             <!-- Additional content here -->
             <div class="row mt-5">
                 <div class="col-md-4">
                     <div class="card">
                         <div class="card-body">
-                            <h5 class="card-title">Manage Contacts</h5>
-                            <p class="card-text">Easily manage all your contacts in one place.</p>
-                            <a href="/user/contacts" class="btn btn-primary">Go to Contacts</a>
+                            <h5 class="card-title" th:text="#{home.welcome-text}">Manage Contacts</h5>
+                            <p class="card-text" th:text="#{home.card-text}">Easily manage all your contacts in one place.</p>
+                            <a href="/user/contacts" class="btn btn-primary" th:text="#{home.card-button}">Go to Contacts</a>
                         </div>
                     </div>
                 </div>
@@ -88,9 +88,9 @@
                 <div class="col-md-4">
                     <div class="card">
                         <div class="card-body">
-                            <h5 class="card-title">View Profile</h5>
-                            <p class="card-text">Update and manage your personal profile information.</p>
-                            <a href="/user/profile" class="btn btn-secondary">View Profile</a>
+                            <h5 class="card-title" th:text="#{home.card-title1}">View Profile</h5>
+                            <p class="card-text" th:text="#{home.card-text1}">Update and manage your personal profile information.</p>
+                            <a href="/user/profile" class="btn btn-secondary" th:text="#{home.card-button1}">View Profile</a>
                         </div>
                     </div>
                 </div>
@@ -98,9 +98,9 @@
                 <div class="col-md-4">
                     <div class="card">
                         <div class="card-body">
-                            <h5 class="card-title">Settings</h5>
-                            <p class="card-text">Adjust your account settings and preferences.</p>
-                            <a href="/user/settings" class="btn btn-warning">Go to Settings</a>
+                            <h5 class="card-title" th:text="#{home.card-title2}">Settings</h5>
+                            <p class="card-text" th:text="#{home.card-text2}">Adjust your account settings and preferences.</p>
+                            <a href="/user/settings" class="btn btn-warning" th:text="#{home.card-button2}">Go to Settings</a>
                         </div>
                     </div>
                 </div>

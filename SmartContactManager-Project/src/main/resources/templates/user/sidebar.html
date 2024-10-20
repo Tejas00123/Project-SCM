@@ -11,7 +11,7 @@
         <div class="d-flex flex-column flex-shrink-0 p-3 bg-body-secondary ">
             <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
                 <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"></use></svg>
-                <span class="fs-4">Welcome, To SCM</span>
+                <span class="fs-4" th:text="#{sidebar.title}">Welcome, To SCM</span>
             </a>
            
             <ul class="nav nav-pills flex-column mb-auto">
@@ -22,31 +22,31 @@
                     </a>
                 </li>-->
                 <li>
-                    <a th:href="@{/user/dashboard}" class="nav-link link-dark">
+                    <a th:href="@{/user/dashboard}" class="nav-link link-dark" th:text="#{sidebar.Dashboard}">
                         <i class="bi bi-person-square fs-5"></i>
                         Dashboard
                     </a>
                 </li>
 				<li>
-				     <a th:href="@{/user/profile}" class="nav-link link-dark">
+				     <a th:href="@{/user/profile}" class="nav-link link-dark" th:text="#{sidebar.Profile}">
 					     <i class="bi bi-person-bounding-box fs-5"></i>
 				          Profile
 				      </a>
 				</li>
                 <li>
-                    <a th:href="@{/user/contacts/add}" class="nav-link link-dark">
+                    <a th:href="@{/user/contacts/add}" class="nav-link link-dark" th:text="#{sidebar.AddContact}">
 						<i class="bi bi-person-add fs-5"></i>
                         Add Contact
                     </a>
                 </li>
                 <li>
-                    <a th:href="@{/user/contacts/contacts}" class="nav-link link-dark">
+                    <a th:href="@{/user/contacts/contacts}" class="nav-link link-dark" th:text="#{sidebar.Contacts}">
                        <i class="bi bi-collection fs-5"></i>
                         Contacts
                     </a>
                 </li>
                 <li>
-                    <a th:href="@{/user/direct-message}" class="nav-link link-dark">
+                    <a th:href="@{/user/direct-message}" class="nav-link link-dark" th:text="#{sidebar.DirectMessage}">
                         <i class="bi bi-envelope-at fs-5"></i>
                         Direct Message
                     </a>
@@ -61,11 +61,11 @@
                     <strong th:text="${LoggedUser.name}"></strong>
                 </a>
                 <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser2">
-                    <li><a class="dropdown-item" href="#">New project...</a></li>
-                    <li><a class="dropdown-item" href="#">Settings</a></li>
-                    <li><a class="dropdown-item" href="#">Profile</a></li>
+                    
+                    <li><a class="dropdown-item" href="#" th:text="#{sidebar.Settings}">Settings</a></li>
+                    <li><a class="dropdown-item" href="#" th:text="#{sidebar.Profile}">Profile</a></li>
                     <li><hr class="dropdown-divider"></li>
-                    <li><a class="dropdown-item" th:href="@{/logout}">Sign out</a></li>
+                    <li><a class="dropdown-item" th:href="@{/logout}" th:text="#{sidebar.signout}">Sign out</a></li>
                 </ul>
             </div>
         </div>

@@ -1,32 +1,33 @@
 <nav xmlns:th="http://www.thymeleaf.org" th:fragment="navbar" class="navbar navbar-expand-lg bg-body-secondary">
   <div class="container-fluid">
-    <a class="navbar-brand" th:href=@{/} th:src=@{/images/telephone.png}>SCM</a>
+    <a class="navbar-brand" th:href=@{/} th:src=@{/images/telephone.png} th:text="#{navbar.scm}">SCM</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon" ></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" th:href=@{/}>Home</a>
+          <a class="nav-link active" aria-current="page" th:href=@{/} th:text="#{navbar.home}">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link active" th:href=@{/about}>about</a>
+          <a class="nav-link active" th:href=@{/about} th:text="#{navbar.about}">about</a>
         </li>
 		<li class="nav-item">
-		   <a class="nav-link active" th:href=@{/contact}>contact</a>
+		   <a class="nav-link active" th:href=@{/contact} th:text="#{navbar.contact}">contact</a>
 		</li>
 		<li class="nav-item">
-		          <a class="nav-link active" th:href=@{/services}>Services</a>
+		          <a class="nav-link active" th:href=@{/services} th:text="#{navbar.services}">services</a>
 		</li>
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" th:text="#{navbar.language}">
             Language
           </a>
           <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#">Hindi</a></li>
-            <li><a class="dropdown-item" href="#">Marathi</a></li>
+            <li><a class="dropdown-item" th:href="@{?lang=hi_IN}" th:text="#{navbar.Hindi}">Hindi</a></li>
+            <li><a class="dropdown-item" th:href="@{?lang=mr_IN}" th:text="#{navbar.Marathi}">Marathi</a></li>
+			<li><a class="dropdown-item"  th:href="@{?lang=en_IN}" th:text="#{navbar.English}">English</a></li>
             <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="#">Something else here</a></li>
+            <li><a class="dropdown-item" href="#" th:text="#{navbar.other}">Something else here</a></li>
           </ul>
         </li>
        <!-- <li class="nav-item">
@@ -34,8 +35,8 @@
         </li>-->
       </ul>
       <form class="d-flex" role="search">
-        <button class="btn btn-outline-success" type="submit"><a style="text-decoration:none;color: black;" th:href="@{/login}">Login</a></button>
-		<button class="ms-2 btn btn-outline-success" type="submit"><a style="text-decoration:none;color: black;" th:href="@{/register}">Signup</a></button>
+        <button class="btn btn-outline-success" type="submit"><a style="text-decoration:none;color: black;" th:href="@{/login}" th:text="#{navbar.login}">Login</a></button>
+		<button class="ms-2 btn btn-outline-success" type="submit"><a style="text-decoration:none;color: black;" th:href="@{/register}" th:text="#{navbar.signup}">Signup</a></button>
 	 </form>
     </div>
   </div>
